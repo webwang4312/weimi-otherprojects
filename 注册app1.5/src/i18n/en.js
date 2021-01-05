@@ -1,5 +1,5 @@
 import enLocale from "element-ui/lib/locale/lang/en";
-const English = {
+const en = {
   titletop: ['EnergyClub APP'],
   titlesecond: ['Industry leading blockchain knowledge learning community APP'],
   content: [' Integrate answering questions, live learning, communication, mining, and games in one, with 110,000+ real-name registered users'],
@@ -21,4 +21,4 @@ const English = {
   ...enLocale
 };
 
-export default English;
+export default en;

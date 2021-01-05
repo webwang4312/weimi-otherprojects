@@ -1,5 +1,5 @@
 import zhLocale from "element-ui/lib/locale/lang/zh-CN";
-const Chinese = {
+const cn = {
   titletop: ['EnergyClub APP'],
   titlesecond: ['行业领先的区块链知识学习类社区APP'],
   content: [' 集答题、直播学习、交流、挖矿、游戏于一体 拥有11万+实名注册用户'],
@@ -22,4 +22,4 @@ ios:['ios版本下载'],
     ...zhLocale
 };
 
-export default Chinese;
+export default cn;

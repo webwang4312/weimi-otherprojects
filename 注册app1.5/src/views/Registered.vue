@@ -183,6 +183,7 @@ import crypto from "crypto";
 import { zhCN, country, password, namechecked } from "../assets/rule.js";
 import { log } from "util";
 export default {
+  inject: ["reload"],
   data() {
     // 昵称验证
     var namecheck = (rule, value, callback) => {
@@ -310,6 +311,7 @@ export default {
     //+86
     this.countrySelected = country[0].name;
     // 语言
+    //  console.log(this.$i18n.locale);
     this.nowLang = this.$i18n.locale;
     //console.log(this.nowLang);
     // 区号全部
@@ -402,7 +404,6 @@ export default {
     // 获取手机验证码
     async acceptverification() {
       var that = this;
-
       if (that.ruleForm.phone !== "") {
         if (this.phoneleave == "86+") {
           // 86+并验证
@@ -417,10 +418,10 @@ export default {
 
         //console.log(that.allphone+'0'+that.phonejiami);
       } else if (that.ruleForm.phone == "") {
-        if (this.$i18n.locale == "en") {
-          this.$message.error("Please enter your phone");
-        } else if (this.$i18n.locale == "cn") {
+        if (this.$i18n.locale == "cn") {
           this.$message.error("请输入手机号码");
+        } else {
+          this.$message.error("Please enter your phone");
         }
       }
     },
@@ -468,10 +469,10 @@ export default {
         this.ruleForm.yaoqingma !== ""
       ) {
         this.$http
-        // 47.105.215.191
-        // 测试版
-        // 192.168.1.60
-        //12.9测试版本47.98.110.210
+          // 47.105.215.191
+          // 测试版
+          // 192.168.1.60
+          //12.9测试版本47.98.110.210
           .post(
             "http://47.98.110.210/weimi/index/register",
             qs.stringify({
@@ -485,7 +486,6 @@ export default {
               inviteCode: this.ruleForm.yaoqingma,
               // 验证码
               phoneCode: this.ruleForm.yanzhengma,
-
               accessToken: this.zhucejiamifinish,
             })
           )
@@ -522,8 +522,10 @@ export default {
     switchLanguage(value) {
       if (value == "zh-CN") {
         this.$i18n.locale = "cn";
+        this.reload();
       } else if (value == "en-US") {
         this.$i18n.locale = "en";
+        this.reload();
       } else {
         return false;
       }
@@ -641,6 +643,7 @@ export default {
 .passwordimg1 {
   position: relative;
   top: 320px !important;
+  z-index: 10;
 }
 #selectlanguage {
   position: relative;
@@ -852,6 +855,7 @@ select {
       height: 40px;
       position: relative;
       top: 96px;
+      z-index: 1;
       label {
         position: relative;
         top: 1.09333rem;
@@ -866,6 +870,7 @@ select {
       height: 40px;
       position: relative;
       top: 112px;
+      z-index: 1;
       label {
         position: relative;
         top: 39px;
@@ -881,6 +886,7 @@ select {
       position: absolute;
       top: 400px;
       width: 18px;
+      z-index: 10;
     }
 
     // 邀请码整体设置
@@ -1062,15 +1068,15 @@ select {
     color: rgba(0, 255, 238, 1);
     position: relative;
     top: 18px;
-      span {
+    span {
       color: rgba(0, 255, 238, 1);
       opacity: 1;
     }
   }
-  button:hover{
+  button:hover {
     background: #00ffee;
-     span {
-      color: #02346F;
+    span {
+      color: #02346f;
       opacity: 1;
     }
   }
