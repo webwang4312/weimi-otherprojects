@@ -1,5 +1,5 @@
 # textone
-大V申请源代码
+大V申请源代码.
 ## Project setup
 ```
 npm install
